@@ -6,6 +6,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.DelayQueue;
 
 
 public class Application {
@@ -27,6 +29,7 @@ class Helper extends TimerTask{
 
 	Queue<Flight> RTL = new PriorityQueue<>();
 	Queue<Flight> Approach = new LinkedList<>();
+	//BlockingQueue<Runway> runways = new DelayQueue<Runway>();
 	
 	Airport sdf = new Airport();
 	int numberOfPlanesGenerated = 0;
@@ -73,22 +76,24 @@ class Helper extends TimerTask{
 		
 
 		int planesLanded = 0;
-		
 		for(Flight plane : RTL) {
 			
 			//System.out.println("Number of planes Ready To Land: " + RTL.size());
-			for(Runway runway : sdf.runways) {
+			for(Runway rw : sdf.runway) {
 				
-				if(!runway.isOccupied()) {
+				if(sdf.runway.poll() != null) {
 					planesLanded++;
 					
-					//RTL.poll();
-					runway.setOccupied();
+					System.out.println("Runway is clear for landing.");
+				
+					
 					System.out.println("Flight has landed.");
+					
+					sdf.addRunway(rw);
+					
+					rw.setDelayTime(60000);
+					System.out.println(sdf.runway.size());
 					break;
-				}
-				else {
-					runway.waitTime();
 				}
 			}
 		}
