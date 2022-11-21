@@ -29,8 +29,9 @@ public class Airport {
 		}
 	}
 	
-	public void addRunway(Runway rw) {
+	public void addRunway(Runway rw, int delayTime) {
 		if(runway.size() < 3) {
+		rw.setDelayTime(delayTime);
 		runway.add(rw);
 		System.out.println("Runway is occupied.");
 		//rw.setOccupied();

@@ -82,16 +82,12 @@ class Helper extends TimerTask{
 			for(Runway rw : sdf.runway) {
 				
 				if(sdf.runway.poll() != null) {
+					System.out.println("Runway is clear for landing.");
+					System.out.println("Flight has landed.");
+					sdf.addRunway(rw, 30000);
+					
 					planesLanded++;
 					
-					System.out.println("Runway is clear for landing.");
-				
-					
-					System.out.println("Flight has landed.");
-					
-					sdf.addRunway(rw);
-					
-					rw.setDelayTime(60000);
 					System.out.println(sdf.runway.size());
 					break;
 				}
