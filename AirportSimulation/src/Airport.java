@@ -34,7 +34,6 @@ public class Airport {
 		rw.setDelayTime(delayTime);
 		runway.add(rw);
 		System.out.println("Runway is occupied.");
-		//rw.setOccupied();
 		}
 	}
 

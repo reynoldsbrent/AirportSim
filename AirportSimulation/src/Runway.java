@@ -7,6 +7,7 @@ public class Runway implements Delayed{
 	
 	private Runway runway;
 	private long time;
+	private long currentTime = System.currentTimeMillis();
 	
 	public Runway(long delayTime) {
 		this.time = System.currentTimeMillis() + delayTime;
@@ -63,5 +64,10 @@ public class Runway implements Delayed{
 	public long getDelayTime() {
 		return this.time;
 	}
+	
+	public long getRemainingTime() {
+		return this.time - currentTime;
+	}
+
 }
 
