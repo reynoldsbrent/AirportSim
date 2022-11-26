@@ -9,20 +9,20 @@ public class Flight  {
 	
 	 private String airplaneModel;
 	
-	 public boolean emergency = false; 
+	 private boolean emergency = false; 
 	 
 	 private int randomEmergency;
 	 
+	 private String emergencyString = "";
+	 
 	 private int target = 1;
 	
-	//public String emergency = "B";
+	 private Date dateCreated;
 	
-	public Date dateCreated;
-	
-	public int waitTime = 0;
+	 private int waitTime = 0;
 	
 	// need to make getter and setter
-	public int planeNumber = 1;
+	 public int planeNumber = 1;
 
 	String aircraftType [] = {"Airbus A220", "Airbus A320", "Airbus A330", 
 							"Airbus A350","Boeing 737", "Airbus A380", "Boeing 747",
@@ -48,6 +48,31 @@ public class Flight  {
 		return this.emergency;
 	}
 	
+	public void emergencyStatus() {
+		//String emergencyState = "";
+		if(this.emergency == true) {
+			emergencyString = "EMERGENCY";
+		}
+		else {
+			emergencyString = "NORMAL";
+		}
+	}
+	
+	// changed **********
+		public void flightEmergency() {
+			if(emergency == false){
+				emergency = true;
+			}
+		}
+		
+		public void randomEmergency() {
+			randomEmergency = (int)(Math.random() * 50);
+			if(randomEmergency == target) {
+				emergency = true;
+			}
+			this.emergencyStatus();
+		}
+		
 	public void setWaitTime(Flight flight) {
 		flight.waitTime++;
 	}
@@ -71,30 +96,17 @@ public class Flight  {
 		this.distanceFromAirport = distanceFromAirport;
 	}
 	
-	// changed **********
-	public void flightEmergency() {
-		if(emergency == false){
-			emergency = true;
-		}
-	}
 	
 	public void fly() {
 		distanceFromAirport = distanceFromAirport - 1;
 		}
 	
-	public void randomEmergency() {
-		randomEmergency = (int)(Math.random() * 25);
-		if(randomEmergency == target) {
-			emergency = true;
-		}
-	}
-	
 	@Override
 	public String toString() {
-		return "\nFlight #: " + this.FlightIdentifier + "\nAirplane Type: " 
-	+ this.airplaneModel + "\nDistance From Airport: " + this.distanceFromAirport + " miles" + "\nFlight status: " 
-	+ this.emergency /*+ " Wait time: " + this.waitTime*/ + " \nPLANE NUMBER: " + this.planeNumber + "\nTime: " 
-	+ this.getDate().getTime() + "\n";
+		return "\nFlight #: " + this.FlightIdentifier + "\n---Airplane Type: " 
+	+ this.airplaneModel + "\n---Distance From Airport: " + this.distanceFromAirport + " miles" + "\n---Flight status: " 
+	+ this.emergencyString + " \n---Plane Number: " + this.planeNumber + "\n---Time: " 
+	+ this.getDate() + "\n";
 		
 	}
 

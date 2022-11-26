@@ -8,9 +8,12 @@ public class Airport {
 	BlockingQueue<Runway> runway = new DelayQueue<Runway>();
 	
 	public Airport() {
-		Runway rw1 = new Runway(0);
-		Runway rw2 = new Runway(0);
-		Runway rw3 = new Runway(0);
+		Runway rw1 = new Runway();
+		rw1.setDelayTime(0);
+		Runway rw2 = new Runway();
+		rw2.setDelayTime(0);
+		Runway rw3 = new Runway();
+		rw3.setDelayTime(0);
 		
 		runways.add(rw1);
 		runways.add(rw2);

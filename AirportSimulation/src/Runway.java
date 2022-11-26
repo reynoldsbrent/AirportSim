@@ -8,39 +8,42 @@ public class Runway implements Delayed{
 	private Runway runway;
 	private long time;
 	private long currentTime = System.currentTimeMillis();
+	private long delayTimeInput;
 	
-	public Runway(long delayTime) {
-		this.time = System.currentTimeMillis() + delayTime;
+	public Runway() {
+		//long delayTime
+		//this.time = System.currentTimeMillis() + delayTime;
 	}
 	
 	public void setDelayTime(long delayTime) {
+		delayTimeInput = delayTime;
 		this.time = System.currentTimeMillis() + delayTime;
 	}
 	
-	public boolean isOccupied() {
-		return occupied;
-	}
-	
-	public void setOccupied() {
-		
-		if(occupied) {
-			occupied = false;
-			
-		}
-		else {
-			occupied = true;
-		}
-	}
-	
-	public void waitTime() {
-		if(occupied) {
-			waitTime--;
-		}
-		if(waitTime == 0) {
-			occupied = false;
-			System.out.println("Runway is cleared");
-		}
-	}
+//	public boolean isOccupied() {
+//		return occupied;
+//	}
+//	
+//	public void setOccupied() {
+//		
+//		if(occupied) {
+//			occupied = false;
+//			
+//		}
+//		else {
+//			occupied = true;
+//		}
+//	}
+//	
+//	public void waitTime() {
+//		if(occupied) {
+//			waitTime--;
+//		}
+//		if(waitTime == 0) {
+//			occupied = false;
+//			System.out.println("Runway is cleared");
+//		}
+//	}
 	
 
 	@Override
@@ -65,8 +68,13 @@ public class Runway implements Delayed{
 		return this.time;
 	}
 	
-	public long getRemainingTime() {
-		return this.time - currentTime;
+	public String getRemainingTime() {
+		if(delayTimeInput == 0) {
+			return String.valueOf(delayTimeInput);
+		}
+		long seconds = (time - System.currentTimeMillis())/1000l;
+		String remainingTime = String.valueOf(seconds);
+		return remainingTime;
 	}
 
 }
