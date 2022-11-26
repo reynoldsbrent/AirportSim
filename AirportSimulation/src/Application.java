@@ -305,22 +305,12 @@ class Helper extends TimerTask{
 		
 		
 		String rtlPrint = "RTL size: " + RTL.size();
+		rtl.setText("RTL size: " + RTL.size());
 		
 		while(!printPlanes.isEmpty()) {
 			rtlPrint = rtlPrint + printPlanes.remove();
 			rtl.setText(rtlPrint);
-			//System.out.println(printPlanes.remove());
 		}
-		
-		//System.out.println("Number Of Flights In Approach: " + Approach.size());
-		//System.out.println("------------------------------------");
-		//System.out.println("Number Of Flights Ready To Land: " + RTL.size());
-		//System.out.println("--------------------------------------");
-		//System.out.println(RTL);
-		//System.out.println("**************************************");
-//		System.out.println("------------------------------------");
-		//System.out.println("Number of planes generated: " + numberOfPlanesGenerated);
-//		System.out.println("*******************************************************");
 
 		}
 	
