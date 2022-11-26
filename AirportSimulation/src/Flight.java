@@ -66,7 +66,7 @@ public class Flight  {
 		}
 		
 		public void randomEmergency() {
-			randomEmergency = (int)(Math.random() * 50);
+			randomEmergency = (int)(Math.random() * 75);
 			if(randomEmergency == target) {
 				emergency = true;
 			}

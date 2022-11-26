@@ -138,7 +138,7 @@ class Helper extends TimerTask{
 		
 		approach = new JTextArea("", 5, 20);
 		approach.setEditable(false);
-		approach.setText("Approach:");
+		approach.setText("Approach size: " + Approach.size());
 		approach.setFont(new Font("Segio UI", Font.PLAIN, 10));
 		approachScroll = new JScrollPane(approach);
 		approachScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -147,7 +147,7 @@ class Helper extends TimerTask{
 		
 		rtl = new JTextArea("", 5, 20);
 		rtl.setEditable(false);
-		rtl.setText("RTL:");
+		rtl.setText("RTL size: " + RTL.size());
 		rtl.setFont(new Font("Segio UI", Font.PLAIN, 10));
 		rtlScroll = new JScrollPane(rtl);
 		rtlScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -175,6 +175,7 @@ class Helper extends TimerTask{
 	}
 	
 	Queue<Flight> Approach = new LinkedList<>();
+	Queue<Flight> printApproach = new LinkedList<>();
 	Queue<Flight> RTL = new PriorityQueue<Flight>(1000000, new FlightComparator());
 	Queue<Flight> planesToRemove = new PriorityQueue<Flight>(1000000, new FlightComparator());
 	Queue<Flight> printPlanes = new PriorityQueue<Flight>(1000000, new FlightComparator());
@@ -207,6 +208,13 @@ class Helper extends TimerTask{
 		
 		
 		
+		String showApproach = "Approach size: " + Approach.size();
+		approach.setText(showApproach);
+		
+ 		while(!printApproach.isEmpty()) {
+			showApproach = showApproach + printApproach.remove();
+			approach.setText(showApproach);
+		}
 		
 		// Generates a new airplane if the randomly generated number is 1
 		if(randomNum == target) {
@@ -251,7 +259,6 @@ class Helper extends TimerTask{
 		
 		Approach.remove(newFlight);
 		//end
-
 		
 		
 		// ---------------------------------------------------------------------------------------------------		
@@ -293,7 +300,11 @@ class Helper extends TimerTask{
 		
 		printPlanes.addAll(RTL);
 		
-		String rtlPrint = "RTL: \n";
+		printApproach.addAll(Approach);
+		
+		
+		
+		String rtlPrint = "RTL size: " + RTL.size();
 		
 		while(!printPlanes.isEmpty()) {
 			rtlPrint = rtlPrint + printPlanes.remove();
