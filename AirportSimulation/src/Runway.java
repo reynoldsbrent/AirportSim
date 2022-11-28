@@ -20,31 +20,6 @@ public class Runway implements Delayed{
 		this.time = System.currentTimeMillis() + delayTime;
 	}
 	
-//	public boolean isOccupied() {
-//		return occupied;
-//	}
-//	
-//	public void setOccupied() {
-//		
-//		if(occupied) {
-//			occupied = false;
-//			
-//		}
-//		else {
-//			occupied = true;
-//		}
-//	}
-//	
-//	public void waitTime() {
-//		if(occupied) {
-//			waitTime--;
-//		}
-//		if(waitTime == 0) {
-//			occupied = false;
-//			System.out.println("Runway is cleared");
-//		}
-//	}
-	
 
 	@Override
 	public int compareTo(Delayed obj) {
