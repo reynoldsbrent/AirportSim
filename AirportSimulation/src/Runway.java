@@ -9,7 +9,6 @@ import java.util.*;
 public class Runway implements Delayed{
 	
 	boolean occupied = true;
-	int waitTime = 60;
 	
 	private Runway runway;
 	private long time;
