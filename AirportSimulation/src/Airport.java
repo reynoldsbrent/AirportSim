@@ -9,7 +9,6 @@ import java.util.concurrent.DelayQueue;
  */
 public class Airport {
 
-	List<Runway> runways = new ArrayList<Runway>();
 	BlockingQueue<Runway> runway = new DelayQueue<Runway>();
 	
 	/**
@@ -22,10 +21,6 @@ public class Airport {
 		rw2.setDelayTime(0);
 		Runway rw3 = new Runway();
 		rw3.setDelayTime(0);
-		
-		runways.add(rw1);
-		runways.add(rw2);
-		runways.add(rw3);
 		
 		runway.add(rw1);
 		runway.add(rw2);

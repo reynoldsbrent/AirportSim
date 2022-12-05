@@ -23,8 +23,6 @@ public class Flight  {
 	 private int target = 1;
 	
 	 private Date dateCreated;
-	
-	 private int waitTime = 0;
 	 
 	 public int planeNumber = 1;
 
@@ -40,7 +38,6 @@ public class Flight  {
 		this.distanceFromAirport = 10;
 		this.airplaneModel = aircraftType[(int)(Math.random() * 17)];
 		this.emergency = false;
-		this.waitTime = 0;
 		this.dateCreated = new Date();
 		this.planeNumber = planeNumber;
 	

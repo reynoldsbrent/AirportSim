@@ -78,6 +78,9 @@ public class Runway implements Delayed{
 		}
 		long seconds = (time - System.currentTimeMillis())/1000l;
 		String remainingTime = String.valueOf(seconds);
+		if(seconds < 0) {
+			return "0";
+		}
 		return remainingTime;
 	}
 
