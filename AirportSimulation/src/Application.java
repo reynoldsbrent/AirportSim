@@ -2,42 +2,29 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.DelayQueue;
-import java.util.stream.Collectors;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 
 
-//Need to randomly create an plane emergency. If the plane has an emergency,
-// once the plane is dequeued from Approach enqueue it to RTL and have it at the top of the queue
 
+
+/**
+ * This class runs the airport simulation and contains all of the graphics
+ * @author brentreynolds
+ * @version Fall 2022
+ *
+ */
 public class Application {
 	
 	public static void main(String[] args) {
@@ -54,6 +41,12 @@ public class Application {
 
 // ---------------------------------------------------------------------------------------------------
 
+/**
+ * This class contains the run() method that executes every second according to the timer task
+ * @author brentreynolds
+ * @version Fall 2022
+ *
+ */
 class Helper extends TimerTask{
 	Airport sdf = new Airport();
 	int numberOfPlanesGenerated = 0;
@@ -78,6 +71,9 @@ class Helper extends TimerTask{
 	Color lightBlue = new Color(11, 146, 249);
 	Color offWhite = new Color(220, 228, 232);
 	
+	/**
+	 * No arg constructor for the graphics
+	 */
 	public Helper() {
 		frame = new JFrame();
 		
@@ -170,6 +166,9 @@ class Helper extends TimerTask{
 		
 	}
 	
+	/**
+	 * This method creates a new Helper 
+	 */
 	public void Graphics() {
 		new Helper();
 	}
@@ -182,6 +181,10 @@ class Helper extends TimerTask{
 
 // ---------------------------------------------------------------------------------------------------
 	
+	/**
+	 * This method executes every second.
+	 * This method is responsible for running the simulation
+	 */
 	public void run() {
 		
 		int target = 1;
@@ -229,13 +232,10 @@ class Helper extends TimerTask{
 		if(flight.getDistanceFromAirport() > 5) {
 			Approach.add(flight);
 		}
-	}// end
+	}
 		
 		
-		
-		
-		
-		// ---------------------------------------------------------------------------------------------------
+
 		
 		// Decreases the distance of each plane in the approach queue. 
 		//If the plane's distance is equal to 5, add it to the RTL queue and remove it from the Approach queue.
@@ -246,9 +246,6 @@ class Helper extends TimerTask{
 				plane.randomEmergency();
 			}
 			plane.fly();
-			if(plane.getDistanceFromAirport() > 5) {
-			//System.out.println("Approach: " + plane.getDistanceFromAirport());
-			}
 			
 			if((plane.getDistanceFromAirport() == 5)) {
 				newFlight = plane;
@@ -258,10 +255,7 @@ class Helper extends TimerTask{
 		
 		
 		Approach.remove(newFlight);
-		//end
-		
-		
-		// ---------------------------------------------------------------------------------------------------		
+			
 		
 		int planesLanded = 0;
 		for(Flight plane : RTL) {
@@ -273,13 +267,14 @@ class Helper extends TimerTask{
 			Runway runway = new Runway();
 			for(Runway rw : sdf.runway) {
 				if(sdf.runway.poll() != null) {
-					System.out.println("Runway is clear for landing.");
-					System.out.println("Flight has landed.");
+					
+//					System.out.println("Runway is clear for landing.");
+//					System.out.println("Flight has landed.");
+					
 					// Need to change to 5 minutes for project requirements
 					sdf.addRunway(runway, 60000);
 					planesLanded++;
 					
-					System.out.println(sdf.runway.size());
 					
 					break;
 				}
@@ -287,7 +282,7 @@ class Helper extends TimerTask{
 			
 		}
 		
-		//System.out.println("Number of planes Ready To Land: " + RTL.size());
+		
 		
 		RTL.removeAll(planesToRemove);
 		RTL.addAll(planesToRemove);
