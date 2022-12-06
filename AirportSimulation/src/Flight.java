@@ -72,7 +72,7 @@ public class Flight  {
 	}
 	
 		/**
-		 * This method changes the planes emergency status to true if it is false when this mehtod is called
+		 * This method changes the planes emergency status to true if it is false when this method is called
 		 */
 		public void flightEmergency() {
 			if(emergency == false){
